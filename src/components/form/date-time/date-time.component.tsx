@@ -71,10 +71,10 @@ const DateTime = ({
 
   const [dateSelectionState, setDateSelectionState, dateSelectionRef] = useStateRef(dateSelection);
 
-  const isFormattedInput = useRef(false);
+  const isFormattedInput = useRef<boolean>(false);
   const inputElementChanged = useRef(false);
   const language = useRef<string>(locale || getBrowserLanguage());
-  const loadedLocale = useRef<Locale>(null);
+  const loadedLocale = useRef<Locale | undefined>(undefined);
   const inputElementRef = useRef<HTMLElement>(null);
   const dropDownTargetRef = useRef<HTMLElement>(null);
   const inputRef = useRef<ContentEditableInputRef>(null);
@@ -159,8 +159,8 @@ const DateTime = ({
     return value
       ? typeof value === 'string'
         ? dateSelectionRef.current !== DateSelectionType.DateRange
-          ? parseDate(value, loadedLocale.current ?? undefined)
-          : parseDateRange(value, loadedLocale.current ?? undefined)
+          ? parseDate(value, loadedLocale.current)
+          : parseDateRange(value, loadedLocale.current)
         : value
       : defaultDate;
   };
@@ -204,8 +204,8 @@ const DateTime = ({
     if (value) {
       const dateValue =
         dateSelectionRef.current !== DateSelectionType.DateRange
-          ? parseDate(value, loadedLocale.current ?? undefined)
-          : parseDateRange(value, loadedLocale.current ?? undefined);
+          ? parseDate(value, loadedLocale.current)
+          : parseDateRange(value, loadedLocale.current);
       if (dateValue) {
         if (isValidDate) {
           const isValid = !Array.isArray(dateValue)
@@ -234,8 +234,8 @@ const DateTime = ({
   const onDateStringChange = (dateString: string) => {
     const inputDate =
       dateSelectionRef.current !== DateSelectionType.DateRange
-        ? parseDate(dateString, loadedLocale.current ?? undefined)
-        : parseDateRange(dateString, loadedLocale.current ?? undefined);
+        ? parseDate(dateString, loadedLocale.current)
+        : parseDateRange(dateString, loadedLocale.current);
 
     if (inputDate) {
       if (!Array.isArray(inputDate)) {
