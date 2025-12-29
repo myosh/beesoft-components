@@ -29,7 +29,7 @@ const MobileOverlayPanel = ({
   const displayZIndex = useRef(101);
   const finalTarget = useRef<HTMLElement>(null);
   const panelRef = useRef<HTMLElement>(null);
-  const listenerRef = useRef<(event: MouseEvent) => void>(null);
+  const listenerRef = useRef<((event: MouseEvent) => void) | null>(null);
 
   useEffect(() => {
     if (target) {

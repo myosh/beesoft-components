@@ -73,8 +73,8 @@ const OverlayPanel = ({
   const finalTarget = useRef<HTMLElement>(null);
   const panelRef = useRef<HTMLElement>(null);
   const scrollerPanelRef = useRef<HTMLElement | Document>(null);
-  const listenerRef = useRef<(event: MouseEvent) => void>(null);
-  const scrollListenerRef = useRef<(event: Event) => void>(null);
+  const listenerRef = useRef<((event: MouseEvent) => void) | null>(null);
+  const scrollListenerRef = useRef<((event: Event) => void) | null>(null);
   const resizeObserver = useRef<ResizeObserver>(null);
 
   const beeSoftContext = useBeeSoftContext();

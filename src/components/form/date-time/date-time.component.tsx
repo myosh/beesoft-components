@@ -71,7 +71,7 @@ const DateTime = ({
 
   const [dateSelectionState, setDateSelectionState, dateSelectionRef] = useStateRef(dateSelection);
 
-  const isFormattedInput = useRef<boolean>(null);
+  const isFormattedInput = useRef(false);
   const inputElementChanged = useRef(false);
   const language = useRef<string>(locale || getBrowserLanguage());
   const loadedLocale = useRef<Locale>(null);
