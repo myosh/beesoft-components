@@ -21,7 +21,7 @@ export interface ContentEditableInputProps extends FormInputControl<string> {
 }
 
 export interface ContentEditableInputRef {
-  inputElement?: HTMLElement;
+  inputElement: HTMLElement | null;
   setInnerText: (innerText: string) => void;
   setInnerHTML: (innerHTML: string) => void;
   focus: () => void;
@@ -148,7 +148,7 @@ const ContentEditableInput = (props: ContentEditableInputProps, ref: Ref<Content
   }, []);
 
   useImperativeHandle(ref, () => ({
-    inputElement: inputRef.current ?? undefined,
+    inputElement: inputRef.current,
     setInnerText,
     setInnerHTML,
     focus,
